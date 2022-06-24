@@ -1,0 +1,22 @@
+.form__heading {
+  margin: 0;
+  padding: 0;
+  margin-left: 36px;
+  margin-top: 34px;
+  margin-bottom: 54px;
+  color: #000;
+  font-size: 24px;
+  line-height: 1.208;
+  font-weight: 900;
+  font-family: "Inter";
+}
+
+@media screen and (max-width: 675px) {
+  .form__heading {
+    font-size: 18px;
+    line-height: 1.222;
+    margin-left: 22px;
+    margin-top: 25px;
+    margin-bottom: 75px;
+  }
+}

@@ -1,0 +1,16 @@
+.form__container {
+  max-width: 358px;
+  margin: 0;
+  padding: 0;
+  margin-left: 36px;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+@media screen and (max-width: 675px) {
+  .form__container {
+    max-width: 238px;
+    margin-left: 22px;
+  }
+}
