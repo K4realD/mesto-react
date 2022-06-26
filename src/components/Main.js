@@ -9,11 +9,13 @@ function Main(props) {
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getInitialCards()]).then((res) => {
-      setUserName(res[0].name);
-      setUserAvatar(res[0].avatar);
-      setUserDescription(res[0].about);
-      setCards(res[1].reverse());
+    Promise.all([api.getUserInfo(), api.getInitialCards()]).then(([userData, cardsData]) => {
+      setUserName(userData.name);
+      setUserAvatar(userData.avatar);
+      setUserDescription(userData.about);
+      setCards(cardsData.reverse());
+    }).catch((err) => {
+      console.log(`Ошибка загрузки первоначальных данных, ${err}`)
     });
   }, []);
 

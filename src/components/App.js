@@ -26,7 +26,6 @@ function App() {
   };
 
   return (
-    <div>
         <div className="page">
           <Header />
           <Main
@@ -99,7 +98,7 @@ function App() {
               <span className="form__input-error link-input-error"></span>
             </fieldset>
           </PopupWithForm>
-        </div>
+
         <ImagePopup onClose={closeAllPopups} card={selectedCard}/>
         <PopupWithForm
           name="confirm"
