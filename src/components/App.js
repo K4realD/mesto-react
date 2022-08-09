@@ -33,23 +33,34 @@ function App() {
   };
 
   const handleUpdateUser = (data) => {
-    api.patchProfile(data).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    });
+    api
+      .patchProfile(data)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) =>
+        console.log(`Не удалось обновить данные пользователя: ${err}`)
+      );
   };
 
   const handleUpdateAvatar = (data) => {
-    api.patchAvatar(data).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    });
+    api
+      .patchAvatar(data)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Не удалось обновить аватар: ${err}`));
   };
 
   const handleCardLike = (card) => {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
+
     api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-      setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
+      setCards((state) =>
+        state.map((c) => (c._id === card._id ? newCard : c))
+      ).catch((err) => console.log(`Не удалось поставить лайк: ${err}`));
     });
   };
   const handleCardDelete = (card) => {
@@ -57,14 +68,18 @@ function App() {
       .deleteCard(card._id)
       .then(() =>
         setCards((element) => element.filter((item) => item._id !== card._id))
-      );
+      )
+      .catch((err) => console.log(`Не удалось удалить карточку: ${err}`));
   };
 
   const handleAddPlaceSubmit = (card) => {
-    api.postNewCard(card).then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    });
+    api
+      .postNewCard(card)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(`Не удалось добавить карточку: ${err}`));
   };
 
   useEffect(() => {
